@@ -1,59 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>jQuery Events</title>
-</head>
+  <meta charset="UTF-8">
+  <title>Event</title>
 <body>
-    <button id="btn">MY BUTTON</button><br><br>
-    <button id="btn2">MY SECOND BUTTON</button>
-    <div id="mydiv"></div>
-    <span id="myspan"></span><br>
-    <a href="modulemedia.com">HYPER LINK</a><br><br>
-    <div id="size"></div><br><br>
-    <input type="text" id="textinput"><br><br><br><br>
+    <button id="button">Button</button>
+    <button id="button2">Button two</button>
+    <div id="div1"></div>
+    <span id="span1"></span><br>
+    <a href="modulemedia.com">HYPER LINK</a><br>
+    <div id="size"></div><br>
+    <input type="text" id="input1"><br>
     <form>
-            <input type="text" id="name1">
+            <input type="text" id="name">
             <input type="text" id="email">
-            <button id="submitform">SUBMIT</button>
+            <button id="submit">SUBMIT</button>
     </form>
-    <script src="scripts/jquery-3.4.1.js"></script>
+    <script src="vectacorp/scripts/jquery-3.4.1.js"></script>
     <script>
-        function buttonclick(){window.alert("you clicked me ");}//js function 
+        function buttonclick(){
+            window.alert("button click");
+        }
         $(function (){
             //1
-            $('button').click(buttonclick);
+            //$('button').click(buttonclick);
 
             //2
-            $('button').bind("click",buttonclick);
+            //$('button').bind("click",buttonclick);
 
             //3
-            $('button').on("click", buttonclick);
+            //$('button').on("click", buttonclick);
 
             //4
-            $('body').on({
-                click:buttonclick
-            },'button');
+            //$('body').on({click:buttonclick},'button');
 
             //5
-            $('#mydiv').css({width:'400px',height:'400px',border:'black 1px solid'}).on({
-                    click:function(){window.alert("User clicked the div");},
-                    mouseenter:function(){window.alert("User entered the div");},
-                    mouseleave:function(){window.alert("User left the div");}
-            });
+            // $('#div1').css({width:'400px',height:'400px',border:'black 2px solid'}).on({
+            //         click:function(){window.alert("click");},
+            //         mouseenter:function(){window.alert("enter");},
+            //         mouseleave:function(){window.alert("leave");}
+            // });
 
-            //6
-            $('#mydiv').css({width:'400px',height:'400px',border:'black 1px solid'}).on({
+            // //6
+            $('#span1').css('width','100px').css('background-color','green');
+            $('#div1').css({width:'400px',height:'400px',border:'black 1px solid'}).on({
                     click:function(){
-                        $('#myspan').html("user clicked the div");
+                        $('#span1').html("click");
                     },
                     mouseenter:function(){
-                        $('#myspan').html("user entered the div");
+                        $('#span1').html("enter");
                     },
                     mouseleave:function(){
-                        $('#myspan').html("user exited the div");
+                        $('#span1').html("leave");
                     }
             });
 
@@ -61,6 +59,7 @@
             $('a').on("click",function (e){
                 e.preventDefault();
                 $(this).css('color', 'red');
+                window.alert(e.target);
             });
 
             //9
@@ -69,7 +68,7 @@
             })
         
             //9
-            $("#textinput").on({
+            $("#input1").on({
                 focus: function () {
                 $(this).css('background', 'lightgray');
                 },
@@ -78,17 +77,15 @@
                 }
             });
 
-            //10
-            $('#submitform').click(function (event) {
-                window.console.log('ok');
+            // //10
+            $('#submit').click(function (event) {
                 event.preventDefault();
-                if($('#name1').val()!='')
+                if($('#name').val()!='')
                     {   
-                            window.console.log('ok');
-                            $('#name1').css('border', 'green 2px solid');
+                            $('#name').css('border', 'green 2px solid');
                     }
                 else {
-                            $('#name1').css('border', 'red 2px solid');
+                            $('#name').css('border', 'red 2px solid');
                             window.alert("Enter Name.");
                      }
                 if($('#email').val()!=''){
@@ -99,8 +96,6 @@
                             window.alert("Enter email.");
                     }
             });
-
-
     });
     </script>
 </body>
